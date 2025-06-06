@@ -1,2 +1,3 @@
-# 这是一个非常简单chrome扩展
-用于将word转换成可自定义的文档结构或文本
+# 这是一个非常简单chrome扩展开发框架
+技术栈为：vue3+Ts+vite+Native UI+pinia+IndexedDB
+
