@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"pnpm run content\" \"pnpm run build-ext\"",
     "build": "node --no-warnings ./scripts/build.js",
+    "build-ext": "tsc && vite build --watch --mode development",
     "original-build": "vue-tsc && vite build",
+    "content": "tsc --watch",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -17,19 +19,23 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.21",
+    "@types/ws": "^8.18.1",
     "@vicons/ionicons5": "^0.13.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitejs/plugin-vue-jsx": "^4.2.0",
     "@vue/tsconfig": "^0.7.0",
     "archiver": "^7.0.1",
+    "chokidar": "^4.0.3",
     "chrome-types": "^0.1.352",
+    "concurrently": "^9.2.0",
     "inquirer": "^12.6.3",
     "naive-ui": "^2.41.0",
     "ora": "^8.2.0",
-    "rollup-plugin-copy": "^3.5.0",
     "sass-embedded": "^1.89.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vue-tsc": "^2.2.8"
+    "vite-plugin-static-copy": "^3.1.1",
+    "vue-tsc": "^2.2.8",
+    "ws": "^8.18.3"
   }
 }

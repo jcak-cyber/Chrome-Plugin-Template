@@ -31,9 +31,9 @@ function build() {
   });
 
   // 暂时屏蔽警告
-  // build.stderr.on('data', (data) => {
-  //   spinner.warn(`Error: ${data.toString()}`);
-  // });
+  build.stderr.on('data', (data) => {
+    spinner.warn(`Error: ${data.toString()}`);
+  });
 
   build.on('close', async (code) => {
     if (code === 0) {
