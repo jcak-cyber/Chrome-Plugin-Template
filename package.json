@@ -4,9 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"pnpm run content\" \"pnpm run build-ext\"",
+    "dev": "concurrently \"pnpm run content\" \"pnpm run build:dev\"",
     "build": "node --no-warnings ./scripts/build.js",
-    "build-ext": "tsc && vite build --watch --mode development",
+    "build:dev": "tsc && vite build --watch --mode development",
+    "build:prod": "vue-tsc && vite build --mode production",
     "original-build": "vue-tsc && vite build",
     "content": "tsc --watch",
     "serve": "vite preview"

@@ -8,8 +8,8 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, __dirname)
-  const isDev = env.VITE_IS_DEV === 'true'
+  const env = loadEnv(mode, __dirname);
+  const isDev = mode === "development" || env.VITE_IS_DEV === "true";
 
   const plugins = [
     vue(),
@@ -21,14 +21,24 @@ export default defineConfig(({ mode }) => {
       ],
     }),
   ];
-  
-  if(isDev) plugins.push(HRMMiddleware())
+
+  // 只在开发模式下添加热更新插件
+  if (isDev) {
+    plugins.push(HRMMiddleware());
+  }
 
   return {
     root: "src/",
     plugins,
+    define: {
+      // 确保生产环境完全排除热更新代码
+      __HMR_ENABLED__: JSON.stringify(isDev),
+    },
     build: {
       outDir: path.resolve(__dirname, "extensions"),
+      // 生产环境优化
+      minify: !isDev ? "esbuild" : false,
+      sourcemap: isDev,
       rollupOptions: {
         input: {
           popup: path.resolve(__dirname, "src/popup/index.html"),

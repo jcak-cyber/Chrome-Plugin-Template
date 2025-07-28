@@ -1,8 +1,6 @@
 <template>
   <div class="layout">
-    <n-message-provider>
-      layout
-    </n-message-provider>
+    <n-message-provider> layout </n-message-provider>
     <Loading />
   </div>
 </template>
@@ -10,7 +8,6 @@
 <script setup lang="ts">
 import { NMessageProvider } from "naive-ui";
 import Loading from "../../hooks/useLoading";
-
 </script>
 
 <style lang="scss" scoped>
